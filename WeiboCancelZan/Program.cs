@@ -22,9 +22,9 @@ namespace ConsoleApp5
                 foreach (var i in ids)
                 {
                     Delete(i);
-                    Thread.Sleep(1000);
                 }
                 ids = GetIds(GetIndex());
+                Thread.Sleep(1000);
                 count++;
             }
             Console.WriteLine("over" + count);
@@ -95,7 +95,9 @@ namespace ConsoleApp5
             MatchCollection mc = rrr.Matches(html);
             foreach (Match ma in mc)
             {
-                ids.Add(ma.Value.Substring(6, 16));
+                var temp = ma.Value.Substring(6, 16);
+                if (!ids.Contains(temp))
+                    ids.Add(ma.Value.Substring(6, 16));
             }
             return ids;
 
